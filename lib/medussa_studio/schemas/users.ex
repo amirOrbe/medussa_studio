@@ -1,5 +1,5 @@
 defmodule MedussaStudio.Schemas.Users do
-  @doc """
+  @moduledoc """
   Schema for users
   """
   use Ecto.Schema
