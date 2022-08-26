@@ -3,12 +3,12 @@ defmodule MedussaStudio.Repo.Migrations.CreateUsersTable do
 
   def up do
     create table(:users)do
-      add(:name, :string)
-      add(:email, :string)
-      add(:dateOfBirth, :date)
-      add(:password, :string)
-      add(:age, :integer)
-      add(:phone, :integer)
+      add(:name, :string, null: false)
+      add(:email, :string, null: false)
+      add(:dateOfBirth, :date, null: false)
+      add(:password, :string, null: false)
+      add(:age, :integer, null: false)
+      add(:phone, :integer, null: false)
 
       timestamps()
     end
