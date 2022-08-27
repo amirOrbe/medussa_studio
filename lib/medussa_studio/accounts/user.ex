@@ -1,4 +1,7 @@
 defmodule MedussaStudio.Accounts.User do
+  @moduledoc """
+  Schema for Users
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
