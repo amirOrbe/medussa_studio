@@ -12,7 +12,7 @@ defmodule MedussaStudio.AccountsFixtures do
       attrs
       |> Enum.into(%{
         age: 42,
-        dateOfBrith: ~D[2022-08-26],
+        date_of_birth: ~D[2022-08-26],
         email: "some email",
         login_token: "some login_token",
         name: "some name",

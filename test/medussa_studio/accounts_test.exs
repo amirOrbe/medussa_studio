@@ -10,7 +10,7 @@ defmodule MedussaStudio.AccountsTest do
 
     @invalid_attrs %{
       age: nil,
-      dateOfBrith: nil,
+      date_of_birth: nil,
       email: nil,
       login_token: nil,
       name: nil,
@@ -31,7 +31,7 @@ defmodule MedussaStudio.AccountsTest do
     test "create_user/1 with valid data creates a user" do
       valid_attrs = %{
         age: 42,
-        dateOfBrith: ~D[1998-09-13],
+        date_of_birth: ~D[1998-09-13],
         email: "some email",
         login_token: "some login_token",
         name: "some name",
@@ -41,7 +41,7 @@ defmodule MedussaStudio.AccountsTest do
 
       assert {:ok, %User{} = user} = Accounts.create_user(valid_attrs)
       assert user.age == 42
-      assert user.dateOfBrith == ~D[1998-09-13]
+      assert user.date_of_birth == ~D[1998-09-13]
       assert user.email == "some email"
       assert user.login_token == "some login_token"
       assert user.name == "some name"
@@ -58,7 +58,7 @@ defmodule MedussaStudio.AccountsTest do
 
       update_attrs = %{
         age: 43,
-        dateOfBrith: ~D[2022-08-27],
+        date_of_birth: ~D[2022-08-27],
         email: "some updated email",
         login_token: "some updated login_token",
         name: "some updated name",
@@ -68,7 +68,7 @@ defmodule MedussaStudio.AccountsTest do
 
       assert {:ok, %User{} = user} = Accounts.update_user(user, update_attrs)
       assert user.age == 43
-      assert user.dateOfBrith == ~D[2022-08-27]
+      assert user.date_of_birth == ~D[2022-08-27]
       assert user.email == "some updated email"
       assert user.login_token == "some updated login_token"
       assert user.name == "some updated name"

@@ -1,10 +1,11 @@
 defmodule MedussaStudio.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  @user_attrs ~w(age date_of_birth email name password login_token phone)a
 
   schema "users" do
     field :age, :integer
-    field :dateOfBrith, :date
+    field :date_of_birth, :date
     field :email, :string
     field :login_token, :string
     field :name, :string
@@ -17,7 +18,7 @@ defmodule MedussaStudio.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:age, :dateOfBrith, :email, :name, :password, :login_token, :phone])
-    |> validate_required([:age, :dateOfBrith, :email, :name, :password, :login_token, :phone])
+    |> cast(attrs, @user_attrs)
+    |> validate_required(@user_attrs)
   end
 end
