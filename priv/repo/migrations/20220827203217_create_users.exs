@@ -4,7 +4,7 @@ defmodule MedussaStudio.Repo.Migrations.CreateUsers do
   def up do
     create table(:users) do
       add :age, :integer, null: false
-      add :dateOfBrith, :date, null: false
+      add :date_of_birth, :date, null: false
       add :email, :string, null: false
       add :name, :string, null: false
       add :password, :string, null: false

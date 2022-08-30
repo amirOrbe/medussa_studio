@@ -5,7 +5,7 @@ defmodule MedussaStudioWeb.UserControllerTest do
 
   @create_attrs %{
     age: 42,
-    dateOfBrith: ~D[2022-08-26],
+    date_of_birth: ~D[2022-08-26],
     email: "some email",
     login_token: "some login_token",
     name: "some name",
@@ -14,7 +14,7 @@ defmodule MedussaStudioWeb.UserControllerTest do
   }
   @update_attrs %{
     age: 43,
-    dateOfBrith: ~D[2022-08-27],
+    date_of_birth: ~D[2022-08-27],
     email: "some updated email",
     login_token: "some updated login_token",
     name: "some updated name",
@@ -23,7 +23,7 @@ defmodule MedussaStudioWeb.UserControllerTest do
   }
   @invalid_attrs %{
     age: nil,
-    dateOfBrith: nil,
+    date_of_birth: nil,
     email: nil,
     login_token: nil,
     name: nil,

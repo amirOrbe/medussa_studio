@@ -1,5 +1,7 @@
 defmodule MedussaStudioWeb.Telemetry do
-  @moduledoc false
+  @moduledoc """
+    Telemetry supervisor for the medussa_studio site
+  """
   use Supervisor
   import Telemetry.Metrics
 
