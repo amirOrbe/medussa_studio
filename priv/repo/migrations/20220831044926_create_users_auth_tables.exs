@@ -8,6 +8,11 @@ defmodule MedussaStudio.Repo.Migrations.CreateUsersAuthTables do
       add :email, :citext, null: false
       add :hashed_password, :string, null: false
       add :confirmed_at, :naive_datetime
+      add :age, :integer, null: false
+      add :name, :string, null: false
+      add :date_of_birth, :date
+      add :phone, :integer, null: false
+      add :admin, :boolean, null: false
       timestamps()
     end
 
