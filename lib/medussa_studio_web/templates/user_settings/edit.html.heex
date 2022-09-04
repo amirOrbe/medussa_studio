@@ -15,12 +15,24 @@
   <%= email_input f, :email, required: true %>
   <%= error_tag f, :email %>
 
-  <%= label f, :current_password, for: "current_password_for_email" %>
+  <%= label f, :age %>
+  <%= select f, :age, 8..80 %>
+  <%= error_tag f, :age %>
+
+  <%= label f, :name %>
+  <%= text_input f, :name, required: true %>
+  <%= error_tag f, :name %>
+
+  <%= label f, :phone %>
+  <%= number_input f, :phone, required: true %>
+  <%= error_tag f, :phone %>
+
+    <%= label f, :current_password, for: "current_password_for_email" %>
   <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email" %>
   <%= error_tag f, :current_password %>
 
   <div>
-    <%= submit "Change email" %>
+    <%= submit "Save" %>
   </div>
 </.form>
 

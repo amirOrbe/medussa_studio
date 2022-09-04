@@ -2,6 +2,8 @@ defmodule MedussaStudio.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @fields ~w(email password age name date_of_birth phone admin)a
+
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true, redact: true
@@ -11,6 +13,7 @@ defmodule MedussaStudio.Accounts.User do
     field :name, :string
     field :date_of_birth, :date
     field :phone, :integer
+    field :admin, :boolean
     timestamps()
   end
 
@@ -33,7 +36,7 @@ defmodule MedussaStudio.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password, :age, :name, :date_of_birth, :phone])
+    |> cast(attrs, @fields)
     |> validate_email()
     |> validate_password(opts)
   end

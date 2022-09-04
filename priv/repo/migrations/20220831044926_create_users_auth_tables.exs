@@ -12,7 +12,7 @@ defmodule MedussaStudio.Repo.Migrations.CreateUsersAuthTables do
       add :name, :string, null: false
       add :date_of_birth, :date
       add :phone, :integer, null: false
-      add :admin, :boolean, null: false
+      add :admin, :boolean, default: false
       timestamps()
     end
 
