@@ -3,6 +3,17 @@
 @tailwind utilities;
 
 /* Alerts and form errors used by phx.new */
+
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+.btn-green {
+  @apply bg-teal-500 text-white;
+}
+.btn-green:hover {
+  @apply bg-teal-700;
+}
+
 .alert {
   padding: 15px;
   margin-bottom: 20px;
