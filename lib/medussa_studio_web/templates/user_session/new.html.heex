@@ -1,27 +1,27 @@
-<h1>Log in</h1>
-
-<.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
-  <%= if @error_message do %>
-    <div class="alert alert-danger">
-      <p><%= @error_message %></p>
+<h1 class="text-center text-5xl font-semibold leading-normal mt-0 mb-2 text-black">Log in</h1>
+<div class="w-full max-w-max">
+  <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <%= if @error_message do %>
+      <div class="alert alert-danger">
+        <p class="text-red-500 text-xs italic"><%= @error_message %></p>
+      </div>
+    <% end %>
+    <div class="mb-4">
+      <%= label f, :email, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
+      <%= email_input f, :email, required: true, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
     </div>
-  <% end %>
-
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password, required: true %>
-
-  <%= label f, :remember_me, "Keep me logged in for 60 days" %>
-  <%= checkbox f, :remember_me %>
-
-  <div>
-    <%= submit "Log in" %>
-  </div>
-</.form>
-
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+    <div class="mb-6">
+      <%= label f, :password, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
+      <%= password_input f, :password, required: true, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
+    </div>
+    <div class="mb-6">
+      <%= label f, :remember_me, "Keep me logged in for 60 days", class: ["block text-grey-darker text-sm font-bold mb-2"] %>
+      <%= checkbox f, :remember_me %>
+    </div>
+    <div class="flex items-center justify-between">
+      <%= submit "Log in", class: ["bg-emerald-300 hover:bg-emerald-500 text-black font-bold py-2 px-4 rounded"] %>
+      <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: ["inline-block align-baseline font-bold text-sm text-black hover:text-emerald-500"] %>
+      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: ["inline-block align-baseline font-bold text-sm text-black hover:text-emerald-500"] %>
+    </div>
+  </.form>
+</div>
