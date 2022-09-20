@@ -1,38 +1,44 @@
-<.form class="w-full max-w-lg justify-center items-center" let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="w-full max-w-max justify-items-center	pt-3">
+  <h1 class="text-center text-5xl font-semibold leading-normal mt-0 text-black ">Registro</h1>
+  <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}, class="bg-white shadow-md rounded px-8 pb-8 mb-4 pt-5">
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+    <div class="mb-4">
+      <%= label f, :nombre, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
+      <%= text_input f, :name, required: true, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
+      <%= error_tag f, :name %>
     </div>
-  <% end %>
-
-  <%= label f, :nombre %>
-  <%= text_input f, :name, required: true %>
-  <%= error_tag f, :name %>
-
-  <%= label f, :correo %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
-
-  <%= label f, :contraseña %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
-  <%= label f, :age %>
-  <%= select f, :age, 8..80 %>
-  <%= error_tag f, :age %>
-
-  <%= label f, :phone  %>
-  <%= text_input f, :phone, pattern: "[0-9]*"%>
-  <%= error_tag f, :phone %>
-
-
-
-  <div>
-    <button class="btn btn-green">Register</button>
-  </div>
-</.form>
-
-<p class="flex justify-center items-center">
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %> |
-  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
-</p>
+    <div class="mb-4">
+      <%= label f, :correo, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
+      <%= email_input f, :email, required: true, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
+      <%= error_tag f, :email %>
+    </div>
+    <div class="mb-4">
+      <%= label f, :contraseña, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
+      <%= password_input f, :password, required: true, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
+      <%= error_tag f, :password %>
+    </div>
+    <div class="mb-4">
+      <%= label f, :edad, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
+      <%= select f, :age, 8..80, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
+      <%= error_tag f, :age %>
+    </div>
+    <div class="mb-4">
+      <%= label f, :celular, class: ["block text-gray-700 text-sm font-bold mb-2"]  %>
+      <%= text_input f, :phone, pattern: "[0-9]*", class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"]%>
+      <%= error_tag f, :phone %>
+    </div>
+    <div class="mb-4 flex items-center justify-center pt-3">
+      <button class="btn btn-green">Registrarse</button>
+    </div>
+    <div class="text-center pt-3 font-bold text-sm text-black hover:text-emerald-500">
+      <%= link "Iniciar sesión", to: Routes.user_session_path(@conn, :new) %>
+    </div>
+    <div class="text-center pt-3 font-bold text-sm text-black hover:text-emerald-500">
+      <%= link "Olvido su contraseña?", to: Routes.user_reset_password_path(@conn, :new) %>
+    </div>
+  </.form>
+</div>

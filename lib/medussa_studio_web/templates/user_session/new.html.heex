@@ -1,27 +1,31 @@
-<div class="w-full max-w-max justify-items-center	pt-11">
-  <h1 class="text-center text-5xl font-semibold leading-normal mt-0 mb-2 text-black ">Log in</h1>
-  <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 pt-5">
+<div class="w-full max-w-max justify-items-center	pt-3">
+  <h1 class="text-center text-5xl font-semibold leading-normal mt-0 text-black ">Iniciar sesión</h1>
+  <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user} class="bg-white shadow-md rounded px-8 pb-8 mb-4 pt-5">
     <%= if @error_message do %>
       <div class="alert alert-danger">
         <p class="text-red-500 text-xs italic"><%= @error_message %></p>
       </div>
     <% end %>
     <div class="mb-4">
-      <%= label f, :correo, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
+      <%= label f, :correo_electrónico, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
       <%= email_input f, :email, required: true, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
     </div>
     <div class="mb-6">
       <%= label f, :contraseña, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
       <%= password_input f, :password, required: true, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
     </div>
-    <div class="mb-6">
-      <%= label f, :remember_me, "Keep me logged in for 60 days", class: ["block text-grey-darker text-sm font-bold mb-2"] %>
-      <%= checkbox f, :remember_me %>
+    <div class="flex items-center justify-center">
+      <%= submit "Iniciar sesión", class: ["bg-emerald-300 hover:bg-emerald-500 text-black font-bold py-2 px-4 rounded"] %>
     </div>
-    <div class="flex items-center justify-between">
-      <%= submit "Log in", class: ["bg-emerald-300 hover:bg-emerald-500 text-black font-bold py-2 px-4 rounded"] %>
-      <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: ["inline-block align-baseline font-bold text-sm text-black hover:text-emerald-500"] %>
-      <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new), class: ["inline-block align-baseline font-bold text-sm text-black hover:text-emerald-500"] %>
+    <div class="flex items-center justify-center pt-3">
+      <%= link "Registrarse", to: Routes.user_registration_path(@conn, :new), class: ["bg-emerald-300 hover:bg-emerald-500 text-black font-bold py-2 px-4 rounded"] %>
+    </div>
+    <div class="text-center pt-3 font-bold text-sm text-black hover:text-emerald-500">
+      <%= link "Olvido su contraseña?", to: Routes.user_reset_password_path(@conn, :new)%>
+    </div>
+    <div class="flex items-center pt-3 font-bold text-sm text-black justify-evenly">
+      <%= label f, :remember_me, "Mantenerme logueado", class: ["block text-grey-darker text-sm font-bold text-center"] %>
+      <%= checkbox f, :remember_me, class: ["w-4 h-4 bg-emerald-500 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"] %>
     </div>
   </.form>
 </div>
