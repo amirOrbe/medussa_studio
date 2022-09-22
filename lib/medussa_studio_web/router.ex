@@ -2,6 +2,7 @@ defmodule MedussaStudioWeb.Router do
   use MedussaStudioWeb, :router
 
   import MedussaStudioWeb.UserAuth
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -88,5 +89,9 @@ defmodule MedussaStudioWeb.Router do
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
+  end
+
+  scope "/", MedussaStudioWeb do
+    live "/calendly", CalendlyLive
   end
 end
