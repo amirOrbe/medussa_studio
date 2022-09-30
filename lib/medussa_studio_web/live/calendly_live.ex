@@ -8,6 +8,13 @@ defmodule MedussaStudioWeb.CalendlyLive do
 
   def render(assigns) do
     ~L"""
+    <div>
+    <div class="flex items-center mb-8">
+        <div class="flex-1">
+          <%= Timex.format!(Timex.now("America/Chicago"), "{Mshort} {YYYY}") %>
+        </div>
+      </div>
+    </div>
     <h1>Holi</h1>
     <%= @brightness %>
     """
