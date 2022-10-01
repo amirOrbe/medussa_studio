@@ -1,0 +1,25 @@
+<div class="flex items-baseline justify-between">
+  <h2>
+    <%= Timex.format!(@current_date, "%B %Y", :strftime) %>
+  </h2>
+</div>
+<table class="table-auto">
+  <thead>
+    <tr>
+      <%= for day_name <- @day_names do %>
+        <th class="text-xs p-2 text-gray-600 border border-gray-200">
+          <%= day_name %>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for week <- @week_rows do %>
+      <tr>
+        <%= for day <- week do %>
+          <%= Timex.format!(day, "%d", :strftime) %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
