@@ -1,25 +1,59 @@
-<div class="flex items-baseline justify-between">
-  <h2>
-    <%= Timex.format!(@current_date, "%B %Y", :strftime) %>
-  </h2>
+<div class="container mx-auto mt-10">
+  <div class="wrapper bg-white rounded shadow w-full ">
+    <div class="header flex justify-between border-b p-2">
+      <span class="text-lg font-bold">
+        <%= Timex.format!(@current_date, "%B %Y", :strftime) %>
+      </span>
+      <div class="buttons">
+        <button class="p-1">
+          <a href="#" phx-click="prev-month" >
+            <svg width="1em" fill="gray" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path fill-rule="evenodd" d="M8.354 11.354a.5.5 0 0 0 0-.708L5.707 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z"/>
+              <path fill-rule="evenodd" d="M11.5 8a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z"/>
+            </svg>
+          </a>
+        </button>
+        <button class="p-1">
+          <a href="#" phx-click="next-month">
+            <svg width="1em" fill="gray" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path fill-rule="evenodd" d="M7.646 11.354a.5.5 0 0 1 0-.708L10.293 8 7.646 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+              <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+          </a>
+        </button>
+      </div>
+    </div>
+    <table class="w-full">
+      <thead>
+        <tr>
+          <%= for day_name <- @day_names do %>
+            <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+              <span class="xl:block lg:block md:block sm:block hidden">
+                <%= day_name %>
+              </span>
+            </th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center h-20">
+          <%= for week <- @week_rows do %>
+            <td class="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300 ">
+              <%= for day <- week do %>
+                <div class="flex flex-col h-40 xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto overflow-hidden">
+                  <div class="top h-5 w-full">
+                    <span class="text-gray-500">
+                      <%= Timex.format!(day, "%d", :strftime) %>
+                    </span>
+                  </div>
+                </div>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-<table class="table-auto">
-  <thead>
-    <tr>
-      <%= for day_name <- @day_names do %>
-        <th class="text-xs p-2 text-gray-600 border border-gray-200">
-          <%= day_name %>
-        </th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <%= for week <- @week_rows do %>
-      <tr>
-        <%= for day <- week do %>
-          <%= Timex.format!(day, "%d", :strftime) %>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>

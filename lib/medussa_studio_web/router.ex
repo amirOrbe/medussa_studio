@@ -92,6 +92,7 @@ defmodule MedussaStudioWeb.Router do
   end
 
   scope "/", MedussaStudioWeb do
+    pipe_through [:browser]
     live "/calendly", CalendlyLive
   end
 end
