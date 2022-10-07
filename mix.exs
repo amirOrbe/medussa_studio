@@ -10,7 +10,14 @@ defmodule MedussaStudio.MixProject do
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -52,7 +59,8 @@ defmodule MedussaStudio.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},
-      {:dart_sass, "~> 0.5.1", runtime: Mix.env() == :dev}
+      {:dart_sass, "~> 0.5.1", runtime: Mix.env() == :dev},
+      {:excoveralls, "~> 0.15.0"}
     ]
   end
 
