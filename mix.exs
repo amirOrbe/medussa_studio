@@ -60,7 +60,8 @@ defmodule MedussaStudio.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},
       {:dart_sass, "~> 0.5.1", runtime: Mix.env() == :dev},
-      {:excoveralls, "~> 0.15.0"}
+      {:excoveralls, "~> 0.15.0"},
+      {:timex, "~> 3.7"}
     ]
   end
 
