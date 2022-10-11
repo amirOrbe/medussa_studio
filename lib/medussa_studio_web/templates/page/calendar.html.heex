@@ -2,7 +2,7 @@
   <div class="wrapper bg-white rounded shadow w-full ">
     <div class="header flex justify-between border-b p-2">
       <span class="text-lg font-bold">
-        <%= Timex.Translator.translate("es", "months", Timex.format!(@current_date, "%B", :strftime)) %> ++
+        <%= Timex.Translator.translate("es", "months", Timex.format!(@current_date, "%B", :strftime)) %>
         <%= Timex.Translator.translate("es", "months", Timex.format!(@current_date, "%Y", :strftime)) %>
       </span>
       <div class="buttons">
@@ -30,7 +30,7 @@
       <thead >
         <tr >
           <%= for day_name <- @day_names do %>
-            <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs">
+            <th class="p-2 border-r h-10 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 xl:text-sm text-xs bg-slate-600 text-white ">
               <span class="xl:block lg:block md:block sm:block hidden">
                 <%= day_name %>
               </span>
