@@ -20,7 +20,11 @@ defmodule MedussaStudioWeb.CalendlyLive do
     MedussaStudioWeb.PageView.render("calendar.html", assigns)
   end
 
-  defp day_names, do: [1, 2, 3, 4, 5, 6, 7] |> Enum.map(&Timex.day_shortname/1)
+  defp day_names,
+    do:
+      [1, 2, 3, 4, 5, 6, 7]
+      |> Enum.map(&Timex.day_name/1)
+      |> Enum.map(fn day -> Timex.Translator.translate("es", "weekdays", day) end)
 
   def week_rows(current_date) do
     first =
