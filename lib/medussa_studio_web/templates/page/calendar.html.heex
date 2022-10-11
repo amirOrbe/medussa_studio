@@ -2,7 +2,8 @@
   <div class="wrapper bg-white rounded shadow w-full ">
     <div class="header flex justify-between border-b p-2">
       <span class="text-lg font-bold">
-        <%= Timex.format!(@current_date, "%B %Y", :strftime) %>
+        <%= Timex.Translator.translate("es", "months", Timex.format!(@current_date, "%B", :strftime)) %> ++
+        <%= Timex.Translator.translate("es", "months", Timex.format!(@current_date, "%Y", :strftime)) %>
       </span>
       <div class="buttons">
         <button class="p-1">
