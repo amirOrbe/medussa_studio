@@ -94,7 +94,7 @@ defmodule MedussaStudioWeb.Router do
   scope "/", MedussaStudioWeb do
     pipe_through [:browser]
 
-    get "/date/register", UserDateController, :new
+    get "/appointment/register/:date", UserDateController, :new
   end
 
   scope "/", MedussaStudioWeb do
