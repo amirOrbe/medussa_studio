@@ -45,7 +45,7 @@
               <td class="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300 ">
                 <div class="flex flex-col h-10 xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto overflow-hidden">
                   <div class="top h-5 w-full">
-                    <a href={"/appointment/register/#{day}"} class="text-gray-500">
+                    <a href={"/appointment/register/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="text-gray-500">
                       <%= Timex.format!(day, "%d", :strftime) %>
                     </a>
                   </div>

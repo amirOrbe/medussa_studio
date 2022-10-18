@@ -92,13 +92,14 @@ defmodule MedussaStudioWeb.Router do
   end
 
   scope "/", MedussaStudioWeb do
-    pipe_through [:browser]
-
-    get "/appointment/register/:date", UserDateController, :new
+    pipe_through [:browser, :require_authenticated_user]
+    live "/calendly", CalendlyLive
   end
 
   scope "/", MedussaStudioWeb do
-    pipe_through [:browser]
-    live "/calendly", CalendlyLive
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/appointment/register/:date", UserAppointmentController, :new
+    post "/appointment/register/:date", UserAppointmentController, :new
   end
 end
