@@ -3,7 +3,7 @@ defmodule MedussaStudioWeb.UserAppointmentController do
   alias MedussaStudio.Appointments
 
   def new(conn, params) do
-    changeset = Appointments.register_appointment(%{date: Map.get(params, "date")})
+    changeset = Appointments.register_appointment(%{date: params})
     render(conn, "new.html", changeset: changeset)
   end
 end

@@ -11,7 +11,8 @@ defmodule MedussaStudio.Appointments do
   def register_appointment(attrs) do
     %Appointment{}
     |> Appointment.changeset(attrs)
-    |> Repo.insert()
+
+    # |> Repo.insert()
   end
 
   def get_appointment!(id), do: Repo.get!(Appointment, id)
