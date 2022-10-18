@@ -3,14 +3,15 @@ defmodule MedussaStudioWeb.CalendlyLive do
   use Timex
 
   @week_start_at :mon
-  @current_date Timex.now()
 
   def mount(_params, _session, socket) do
+    current_date = Timex.now()
+
     socket =
       assign(socket,
-        current_date: @current_date,
+        current_date: current_date,
         day_names: day_names(),
-        week_rows: week_rows(@current_date)
+        week_rows: week_rows(current_date)
       )
 
     {:ok, socket}
