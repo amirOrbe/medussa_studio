@@ -18,7 +18,6 @@ defmodule MedussaStudio.Appointments.Appointment do
   def changeset(appointment, attrs) do
     appointment
     |> cast(attrs, @fields)
-
-    # |> validate_required(@fields)
+    |> validate_required(@fields)
   end
 end
