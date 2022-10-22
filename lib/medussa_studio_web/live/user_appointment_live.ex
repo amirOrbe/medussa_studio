@@ -1,6 +1,7 @@
 defmodule MedussaStudioWeb.UserAppointmentLive do
   use MedussaStudioWeb, :live_view
   alias MedussaStudio.Appointments
+  alias MedussaStudio.Repo
   # alias MedussaStudio.Appointments.Appointment
 
   def mount(_, _, socket) do
@@ -21,23 +22,22 @@ defmodule MedussaStudioWeb.UserAppointmentLive do
   #   {:noreply, assign(socket, changeset: changeset)}
   # end
 
-  # def handle_event("save", %{"service" => service_params}, socket) do
-  #   case Appointments.register_appointment(service_params) do
-  #     {:ok, service} ->
-  #       {:noreply,
-  #        socket
-  #        |> put_flash(:info, "service created")
-  #        |> redirect(
-  #          to:
-  #            Routes.user_path(
-  #              MedussaStudioWeb.Endpoint,
-  #              MedussaStudioWeb.UserAppointmentLive,
-  #              service
-  #            )
-  #        )}
+  def handle_event("save", %{"appointment" => appointment_attrs}, _socket) do
+    IO.inspect(appointment_attrs, label: "appointment attrs -->")
 
-  #     {:error, %Ecto.Changeset{} = changeset} ->
-  #       {:noreply, assign(socket, changeset: changeset)}
-  #   end
-  # end
+    algo =
+      appointment_attrs
+      |> Enum.map(fn {key, value} -> {String.to_existing_atom(key), value} end)
+      |> Map.new()
+      |> Appointments.register_appointment()
+
+    insert = Repo.insert!(algo)
+
+    IO.inspect(insert, label: "insert --->")
+
+    # case Appointments.register_appointment(appointment_attrs) do
+    # algo -> IO.puts("si estuvo bien :D #{algo}")
+    # error -> IO.puts("estuvo mal D: #{error}")
+    # end
+  end
 end

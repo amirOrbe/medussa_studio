@@ -9,6 +9,8 @@ defmodule MedussaStudio.Appointments do
   alias MedussaStudio.Appointments.Appointment
 
   def register_appointment(attrs) do
+    IO.inspect(attrs, label: "attrs ---->")
+
     %Appointment{}
     |> Appointment.changeset(attrs)
 
