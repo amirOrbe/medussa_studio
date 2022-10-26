@@ -8,13 +8,14 @@ defmodule MedussaStudio.Appointments do
 
   alias MedussaStudio.Appointments.Appointment
 
-  def register_appointment(attrs) do
-    IO.inspect(attrs, label: "attrs ---->")
+  def validate_appointment(attrs) do
+    Appointment.changeset(%Appointment{}, attrs)
+  end
 
+  def save_appointment(attrs) do
     %Appointment{}
     |> Appointment.changeset(attrs)
-
-    # |> Repo.insert()
+    |> Repo.insert()
   end
 
   def get_appointment!(id), do: Repo.get!(Appointment, id)
