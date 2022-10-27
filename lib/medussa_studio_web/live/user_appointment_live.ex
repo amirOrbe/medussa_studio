@@ -8,7 +8,7 @@ defmodule MedussaStudioWeb.UserAppointmentLive do
     socket =
       assign(socket,
         changeset: Appointments.validate_appointment(%{}),
-        date: Enum.map(params, fn {_key, value} -> value end)
+        date: correct_map_structure(params)
       )
 
     {:ok, socket}
@@ -28,13 +28,20 @@ defmodule MedussaStudioWeb.UserAppointmentLive do
   # end
 
   def handle_event("save", %{"appointment" => appointment_attrs}, socket) do
+    date = Enum.into(socket.assigns.date, %{})
+
     appointment_changeset =
       appointment_attrs
-      |> Enum.map(fn {key, value} -> {String.to_existing_atom(key), value} end)
+      |> correct_map_structure()
       |> Map.new()
+      |> Map.merge(date)
       |> Appointments.validate_appointment()
 
     Repo.insert(appointment_changeset)
     {:noreply, socket}
+  end
+
+  def correct_map_structure(params) do
+    Enum.map(params, fn {key, value} -> {String.to_existing_atom(key), value} end)
   end
 end
