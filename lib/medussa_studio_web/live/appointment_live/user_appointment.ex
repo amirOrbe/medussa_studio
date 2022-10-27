@@ -1,4 +1,4 @@
-defmodule MedussaStudioWeb.UserAppointmentLive do
+defmodule MedussaStudioWeb.AppointmentLive.UserAppointment do
   use MedussaStudioWeb, :live_view
   alias MedussaStudio.Appointments
   alias MedussaStudio.Repo
@@ -12,10 +12,6 @@ defmodule MedussaStudioWeb.UserAppointmentLive do
       )
 
     {:ok, socket}
-  end
-
-  def render(assigns) do
-    MedussaStudioWeb.PageView.render("appointment.html", assigns)
   end
 
   # def handle_event("validate", %{"servicio" => params}, socket) do

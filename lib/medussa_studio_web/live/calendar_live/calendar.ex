@@ -1,4 +1,4 @@
-defmodule MedussaStudioWeb.CalendlyLive do
+defmodule MedussaStudioWeb.CalendarLive.Calendar do
   use MedussaStudioWeb, :live_view
   use Timex
 
@@ -15,10 +15,6 @@ defmodule MedussaStudioWeb.CalendlyLive do
       )
 
     {:ok, socket}
-  end
-
-  def render(assigns) do
-    MedussaStudioWeb.PageView.render("calendar.html", assigns)
   end
 
   defp day_names,
