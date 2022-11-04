@@ -43,9 +43,15 @@
           <tr class="text-center h-20">
             <%= for day <- week do %>
               <td class="border p-1 h-20 xl:w-40 lg:w-20 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300 ">
-                <a href={"/appointment/register/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="flex flex-col h-full xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto overflow-hidden justify-center	">
-                  <%= Timex.format!(day, "%d", :strftime) %>
-                </a>
+                <%= if Map.take(day, [:year, :month, :day]) == Map.take(Timex.now, [:year, :month, :day]) do %>
+                  <a href={"/appointment/register/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="flex flex-col h-full xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto justify-center bg-teal-500">
+                    <%= Timex.format!(day, "%d", :strftime) %>
+                  </a>
+                <% else %>
+                  <a href={"/appointment/register/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="flex flex-col h-full xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto overflow-hidden justify-center	">
+                    <%= Timex.format!(day, "%d", :strftime) %>
+                  </a>
+                <% end %>
               </td>
             <% end %>
           </tr>
