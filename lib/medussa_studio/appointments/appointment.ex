@@ -2,7 +2,7 @@ defmodule MedussaStudio.Appointments.Appointment do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @fields ~w(date time service status)a
+  @fields ~w(date time service status user_id)a
 
   schema "appointment" do
     field :date, :string
@@ -10,7 +10,6 @@ defmodule MedussaStudio.Appointments.Appointment do
     field :status, :string
     field :time, :string
     field :user_id, :id
-
     timestamps()
   end
 

@@ -17,10 +17,6 @@
         <%= Enum.map(@date, fn {_key, value} -> value end) %>
       </div>
       <div class="mb-6">
-        <%= label f, :estatus, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
-        <%= select f, :status, selected: [:Espera] %>
-      </div>
-      <div class="mb-6">
         <%= label f, :hora, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
         <%= time_input f, :time, required: true, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
       </div>
