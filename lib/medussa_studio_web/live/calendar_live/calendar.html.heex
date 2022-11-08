@@ -42,14 +42,16 @@
         <%= for week <- @week_rows do %>
           <tr class="text-center h-20">
             <%= for day <- week do %>
-              <td class="border p-1 h-40 xl:w-40 lg:w-30 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300 ">
-                <div class="flex flex-col h-10 xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto overflow-hidden">
-                  <div class="top h-5 w-full">
-                    <a href={"/appointment/register/#{day}"} class="text-gray-500">
-                      <%= Timex.format!(day, "%d", :strftime) %>
-                    </a>
-                  </div>
-                </div>
+              <td class="border p-1 h-20 xl:w-40 lg:w-20 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300 ">
+                <%= if Map.take(day, [:year, :month, :day]) == Map.take(Timex.now, [:year, :month, :day]) do %>
+                  <a href={"/appointment/register/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="flex flex-col h-full xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto justify-center bg-gray-300">
+                    <%= Timex.format!(day, "%d", :strftime) %>
+                  </a>
+                <% else %>
+                  <a href={"/appointment/register/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="flex flex-col h-full xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto overflow-hidden justify-center	">
+                    <%= Timex.format!(day, "%d", :strftime) %>
+                  </a>
+                <% end %>
               </td>
             <% end %>
           </tr>
