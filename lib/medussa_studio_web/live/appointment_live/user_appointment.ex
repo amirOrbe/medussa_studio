@@ -2,13 +2,14 @@ defmodule MedussaStudioWeb.AppointmentLive.UserAppointment do
   use MedussaStudioWeb, :live_view
   alias MedussaStudio.Appointments
   alias MedussaStudio.Accounts
+  alias MedussaStudio.Utils.HandleJson
   @status "Espera"
 
   def mount(params, session, socket) do
     socket =
       assign(socket,
         changeset: Appointments.validate_appointment(%{}),
-        date: json_to_map(params),
+        date: HandleJson.json_to_map(params),
         user_token: session["user_token"]
       )
 
@@ -19,9 +20,19 @@ defmodule MedussaStudioWeb.AppointmentLive.UserAppointment do
     date = Enum.into(socket.assigns.date, %{})
     user = Accounts.get_user_by_session_token(socket.assigns.user_token)
 
+    if user do
+      create_appointment(user, appointment_attrs, date, socket)
+    else
+      socket
+      |> put_flash(:info, "Error, usuario no encontrado")
+      |> redirect(to: "/")
+    end
+  end
+
+  defp create_appointment(user, appointment_attrs, date, socket) do
     appointment =
       appointment_attrs
-      |> json_to_map()
+      |> HandleJson.json_to_map()
       |> Map.merge(date)
       |> Map.merge(%{status: @status})
       |> Map.merge(%{user_id: user.id})
@@ -36,11 +47,5 @@ defmodule MedussaStudioWeb.AppointmentLive.UserAppointment do
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, changeset: changeset)}
     end
-  end
-
-  def json_to_map(params) do
-    params
-    |> Enum.map(fn {key, value} -> {String.to_existing_atom(key), value} end)
-    |> Map.new()
   end
 end
