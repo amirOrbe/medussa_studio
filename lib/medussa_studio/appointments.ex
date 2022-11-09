@@ -18,5 +18,11 @@ defmodule MedussaStudio.Appointments do
     |> Repo.insert()
   end
 
-  def get_appointment!(id), do: Repo.get!(Appointment, id)
+  def get_appointmen_by_idt!(id), do: Repo.get!(Appointment, id)
+
+  def get_appointments_by_date(date) do
+    Appointment
+    |> where(date: ^date)
+    |> Repo.all()
+  end
 end
