@@ -44,9 +44,15 @@
             <%= for day <- week do %>
               <td class="border p-1 h-20 xl:w-40 lg:w-20 md:w-30 sm:w-20 w-10 overflow-auto transition cursor-pointer duration-500 ease hover:bg-gray-300 ">
                 <%= if @user_admin  do %>
-                  <a href={"/admin/appointment/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="flex flex-col h-full xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto justify-center bg-gray-300">
-                    <%= Timex.format!(day, "%d", :strftime) %>
-                  </a>
+                  <%= if Map.take(day, [:year, :month, :day]) == Map.take(Timex.now, [:year, :month, :day]) do %>
+                    <a href={"/admin/appointment/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="flex flex-col h-full xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto justify-center bg-gray-300">
+                      <%= Timex.format!(day, "%d", :strftime) %>
+                    </a>
+                  <% else %>
+                    <a href={"/admin/appointment/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="flex flex-col h-full xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto justify-center">
+                      <%= Timex.format!(day, "%d", :strftime) %>
+                    </a>
+                  <% end %>
                 <% else %>
                   <%= if Map.take(day, [:year, :month, :day]) == Map.take(Timex.now, [:year, :month, :day]) do %>
                     <a href={"/appointment/register/#{Timex.format!(day, "%d-%m-%y", :strftime)}"} class="flex flex-col h-full xl:w-40 lg:w-30 md:w-30 sm:w-full w-10 mx-auto justify-center bg-gray-300">
