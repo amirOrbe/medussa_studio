@@ -5,6 +5,7 @@ defmodule MedussaStudioWeb.AppointmentLive.UserAppointment do
   alias MedussaStudio.Utils.HandleJson
   @status "Espera"
 
+  @impl true
   def mount(params, session, socket) do
     socket =
       assign(socket,
@@ -16,6 +17,7 @@ defmodule MedussaStudioWeb.AppointmentLive.UserAppointment do
     {:ok, socket}
   end
 
+  @impl true
   def handle_event("save", %{"appointment" => appointment_attrs}, socket) do
     date = Enum.into(socket.assigns.date, %{})
     user = Accounts.get_user_by_session_token(socket.assigns.user_token)

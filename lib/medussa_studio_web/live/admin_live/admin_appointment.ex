@@ -13,12 +13,12 @@ defmodule MedussaStudioWeb.AdminLive.AdminAppointment do
         <th scope="col" class="py-3 px-6">Servicio</th>
         <th scope="col" class="py-3 px-6">Hora</th>
         <th scope="col" class="py-3 px-6">Usuario</th>
+        <th scope="col" class="py-3 px-6">Estatus</th>
         <th scope="col" class="py-3 px-6">Editar</th>
       </tr>
       </thead>
       <tbody>
-        <%= for appointments <-  assigns.appointments do %>
-          <%= for appointment <- appointments do %>
+        <%= for appointment <-  @appointments do %>
             <tr class="bg-white border-b dark:bg-gray-900 dark:text-white">
               <td class="py-4 px-6">
                 <%= appointment.date %>
@@ -33,10 +33,12 @@ defmodule MedussaStudioWeb.AdminLive.AdminAppointment do
               <%= appointment.user_id %>
               </td>
               <td class="py-4 px-6">
+              <%= appointment.status %>
+              </td>
+              <td class="py-4 px-6">
               <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
               </td>
             </tr>
-          <% end %>
         <% end %>
       </tbody>
       </table>
@@ -44,12 +46,17 @@ defmodule MedussaStudioWeb.AdminLive.AdminAppointment do
     """
   end
 
-  defp list_of_appointments(date) do
-    date
-    |> Enum.map(fn {_key, date} -> Appointments.get_appointments_by_date(date) end)
+  defp list_of_appointments(%{date: date}) do
+    Appointments.get_appointments_by_date(date)
+  end
+
+  def handle_info({:appointment_created, appointment}, socket) do
+    {:noreply, update(socket, :appointments, fn appointments -> [appointment | appointments] end)}
   end
 
   def mount(params, session, socket) do
+    if connected?(socket), do: Appointments.subscribe()
+
     socket =
       assign(socket,
         date: HandleJson.json_to_map(params),
