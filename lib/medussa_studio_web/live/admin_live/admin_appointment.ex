@@ -5,36 +5,42 @@ defmodule MedussaStudioWeb.AdminLive.AdminAppointment do
 
   def render(assigns) do
     ~H"""
-    <table class="table-auto">
-      <thead>
+    <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-10">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-white-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
-        <th>Fecha seleccionada</th>
-        <th>Servicio</th>
-        <th>Hora</th>
-        <th>Usuario</th>
+        <th scope="col" class="py-3 px-6">Fecha seleccionada</th>
+        <th scope="col" class="py-3 px-6">Servicio</th>
+        <th scope="col" class="py-3 px-6">Hora</th>
+        <th scope="col" class="py-3 px-6">Usuario</th>
+        <th scope="col" class="py-3 px-6">Editar</th>
       </tr>
       </thead>
       <tbody>
         <%= for appointments <-  assigns.appointments do %>
           <%= for appointment <- appointments do %>
-            <tr>
-              <td>
+            <tr class="bg-white border-b dark:bg-gray-900 dark:text-white">
+              <td class="py-4 px-6">
                 <%= appointment.date %>
               </td>
-              <td>
+              <td class="py-4 px-6">
               <%= appointment.service %>
               </td>
-              <td>
+              <td class="py-4 px-6">
               <%= appointment.time %>
               </td>
-              <td>
+              <td class="py-4 px-6">
               <%= appointment.user_id %>
+              </td>
+              <td class="py-4 px-6">
+              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
               </td>
             </tr>
           <% end %>
         <% end %>
       </tbody>
-    </table>
+      </table>
+    </div>
     """
   end
 
