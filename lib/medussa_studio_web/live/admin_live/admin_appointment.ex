@@ -6,14 +6,14 @@ defmodule MedussaStudioWeb.AdminLive.AdminAppointment do
   def render(assigns) do
     ~H"""
     <div class="overflow-x-auto relative shadow-md sm:rounded-lg mt-10">
-      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-white-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
         <th scope="col" class="py-3 px-6">Fecha seleccionada</th>
-        <th scope="col" class="py-3 px-6">Servicio</th>
-        <th scope="col" class="py-3 px-6">Hora</th>
-        <th scope="col" class="py-3 px-6">Usuario</th>
-        <th scope="col" class="py-3 px-6">Estatus</th>
+        <th scope="col" class="py-3 px-6"><a href="#" class="hover:text-white">Servicio</a></th>
+        <th scope="col" class="py-3 px-6"><a href="#" class="hover:text-white">Hora</a></th>
+        <th scope="col" class="py-3 px-6"><a href="#" class="hover:text-white">Usuario</a></th>
+        <th scope="col" class="py-3 px-6"><a href="#" class="hover:text-white">Estatus</a></th>
         <th scope="col" class="py-3 px-6">Editar</th>
       </tr>
       </thead>
