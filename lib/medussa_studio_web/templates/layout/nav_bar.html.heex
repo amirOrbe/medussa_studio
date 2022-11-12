@@ -1,4 +1,4 @@
-<nav class=" border-gray-200 px-2 sm:px-4 py-2.5 rounded  bg-teal-500	">
+<nav class=" border-gray-200 px-2 sm:px-4 py-2.5 rounded  bg-red-600">
   <div class="container flex flex-wrap justify-between items-center mx-auto">
     <a href="/" class="flex items-center">
       <img src="/images/logo.png" class="mr-3 h-6 sm:h-14" alt="Meddusa Studio">
@@ -10,7 +10,7 @@
         <img class="w-8 h-8 rounded-full" src="/images/alien.png" alt="user photo">
       </button>
       <!-- Dropdown menu -->
-      <div class="absolute top-10 right-20 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 text-center" id="user-dropdown">
+      <div class="hidden absolute top-10 right-20 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 text-center" id="user-dropdown">
         <%= if @current_user do %>
           <div class="py-3 px-4">
             <span class="block text-sm text-gray-900 dark:text-white"><%= @current_user.name %></span>
@@ -39,15 +39,15 @@
       </button>
     </div>
     <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
-      <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-teal-500 dark:border-gray-700">
+      <ul class="flex flex-col p-4 mt-4 bg-black rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-black dark:bg-gray-800 md:dark:bg-teal-500 dark:border-gray-700">
         <li>
-          <a href="/calendar" class="block py-2 pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Agendar cita</a>
+          <a href="/calendar" class="block py-2 pr-4 pl-3 text-2xl text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-white md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Agendar cita</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Servicios y precios</a>
+          <a href="#" class="block py-2 pr-4 pl-3 text-2xl text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Servicios y precios</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contacto</a>
+          <a href="#" class="block py-2 pr-4 pl-3 text-2xl text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contacto</a>
         </li>
       </ul>
     </div>
