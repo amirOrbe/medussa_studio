@@ -95,5 +95,6 @@ defmodule MedussaStudioWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
     live "/calendar", CalendarLive.Calendar
     live "/appointment/register/:date", AppointmentLive.UserAppointment
+    live "/admin/appointment/:date", AdminLive.AdminAppointment
   end
 end
