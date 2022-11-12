@@ -9,12 +9,12 @@ defmodule MedussaStudioWeb.AdminLive.AdminAppointment do
       <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-white-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
-        <th scope="col" class="py-3 px-6">Fecha seleccionada</th>
-        <th scope="col" class="py-3 px-6"><a href="#" class="hover:text-white">Servicio</a></th>
-        <th scope="col" class="py-3 px-6"><a href="#" class="hover:text-white">Hora</a></th>
-        <th scope="col" class="py-3 px-6"><a href="#" class="hover:text-white">Usuario</a></th>
-        <th scope="col" class="py-3 px-6"><a href="#" class="hover:text-white">Estatus</a></th>
-        <th scope="col" class="py-3 px-6">Editar</th>
+        <th scope="col" class="py-3 px-6 bg-black text-white ">Fecha seleccionada</th>
+        <th scope="col" class="py-3 px-6 bg-black text-white "><a href="#" class="hover:text-white">Servicio</a></th>
+        <th scope="col" class="py-3 px-6 bg-black text-white "><a href="#" class="hover:text-white">Hora</a></th>
+        <th scope="col" class="py-3 px-6 bg-black text-white "><a href="#" class="hover:text-white">Usuario</a></th>
+        <th scope="col" class="py-3 px-6 bg-black text-white "><a href="#" class="hover:text-white">Estatus</a></th>
+        <th scope="col" class="py-3 px-6 bg-black text-white ">Editar</th>
       </tr>
       </thead>
       <tbody>

@@ -12,35 +12,10 @@ defmodule MedussaStudioWeb.GalleryLive.GalleryLive do
   end
 
   def render(assigns) do
-    ~L"""
-    <div id="carouselExampleCaptions class="carousel slide relative" data-bs-ride="carousel">
-    <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-    <button
-      type="button"
-      data-bs-target="#carouselExampleCaptions"
-      data-bs-slide-to="0"
-      class="active"
-      aria-current="true"
-      aria-label="Slide 1"
-    ></button>
-    </div>
-    <button phx-click="prev" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
-    Anterior
-    </button>
-    <button phx-click="next" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-    Siguiente
-    </button>
-    </div>
-      <%= if @slideshow == :stopped do %>
-        <button phx-click="play_slideshow" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">Play</button>
-      <% else %>
-        <button phx-click="stop_slideshow" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">Stop</button>
-      <% end %>
-      <div class="carousel-inner relative w-full overflow-hidden">
-      <div class="carousel-item active relative float-left w-full">
-        <img src="<%= Gallery.large_url(@current_id) %>", class="block w-full">
-      </div>
-    </div>
+    ~H"""
+    <blockquote class="text-xl italic font-semibold text-gray-900 dark:text-white">
+    <p>"La atencion es un articulo de lujo"</p>
+    </blockquote>
     """
   end
 
