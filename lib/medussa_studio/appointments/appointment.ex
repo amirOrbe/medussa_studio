@@ -9,7 +9,7 @@ defmodule MedussaStudio.Appointments.Appointment do
     field :service, :string
     field :status, :string
     field :time, :string
-    field :user_id, :id
+    belongs_to :user, MedussaStudio.Accounts.User
     timestamps()
   end
 

@@ -14,6 +14,8 @@ defmodule MedussaStudio.Accounts.User do
     field :date_of_birth, :date
     field :phone, :integer
     field :admin, :boolean
+
+    has_many :appointments, MedussaStudio.Appointments.Appointment, foreign_key: :user_id
     timestamps()
   end
 

@@ -1,17 +1,20 @@
 defmodule MedussaStudioWeb.CalendarLive.Calendar do
   use MedussaStudioWeb, :live_view
   use Timex
+  alias MedussaStudio.Accounts
 
   @week_start_at :mon
 
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
     current_date = Timex.now()
+    %{admin: admin} = Accounts.get_user_by_session_token(session["user_token"])
 
     socket =
       assign(socket,
         current_date: current_date,
         day_names: day_names(),
-        week_rows: week_rows(current_date)
+        week_rows: week_rows(current_date),
+        user_admin: admin
       )
 
     {:ok, socket}
