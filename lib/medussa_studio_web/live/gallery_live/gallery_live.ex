@@ -13,9 +13,8 @@ defmodule MedussaStudioWeb.GalleryLive.GalleryLive do
 
   def render(assigns) do
     ~H"""
-    <blockquote class="text-xl italic font-semibold text-gray-900 dark:text-white">
+    <h1>Hi</h1>
     <p>"La atencion es un articulo de lujo"</p>
-    </blockquote>
     """
   end
 
