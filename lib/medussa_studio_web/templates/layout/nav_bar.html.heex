@@ -1,65 +1,88 @@
-<nav class=" border-gray-200 px-2 sm:px-4 py-2.5  bg-teal-500	">
+<nav class=" border-gray-200 px-2 sm:px-4 py-2.5 rounded  bg-red-600">
   <div class="container flex flex-wrap justify-between items-center mx-auto">
     <a href="/" class="flex items-center">
       <img src="/images/logo.png" class="mr-3 h-6 sm:h-14" alt="Meddusa Studio">
       <h2 class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Medussa Studio</h2>
     </a>
-    <div class="flex items-center md:order-2">
-      <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+    <div class="flex items-center md:order-2" x-data="{ open: false }" class="relative text-left">
+      <button  @click="open = !open"
+    @keydown.escape.window="open = false"
+    @click.away="open = false" type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
         <span class="sr-only">Open user menu</span>
-        <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo">
+        <img class="w-12 h-12 rounded-full" src="/images/alien.png" alt="user photo">
       </button>
-      <!-- Dropdown menu -->
-      <div class="z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style=" position: absolute; margin: 0px; transform: translate3d(0px, 143px, 0px);">
+      <!-- Dropdown menu start-->
+      <div  x-cloak
+    x-show="open"
+    x-transition:enter="transition ease-out duration-100"
+    x-transition:enter-start="transform opacity-0 scale-95"
+    x-transition:enter-end="transform opacity-100 scale-100"
+    x-transition:leave="transition ease-in duration-75"
+    x-transition:leave-start="transform opacity-100 scale-100"
+    x-transition:leave-end="transform opacity-0 scale-95" class="absolute top-14 right-20 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 text-center" id="user-dropdown">
         <%= if @current_user do %>
           <div class="py-3 px-4">
             <span class="block text-sm text-gray-900 dark:text-white"><%= @current_user.name %></span>
             <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">  <%= @current_user.email %></span>
           </div>
         <% end %>
-        <ul>
+        <ul class="py-1" aria-labelledby="user-menu-button">
           <%= if @current_user do %>
             <li>
-              <button class="bg-slate-600 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-full"><%= @current_user.email %></button>
-            </li>
-            <li>
-              <button class="bg-slate-600 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-full"><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></button>
-            </li>
-            <li>
-              <button class="bg-slate-600 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-full"><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></button>
+              <%= link "Perfil", to: Routes.user_settings_path(@conn, :edit), class: ["block py-2 px-4 text-sm text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"] %>
+              <%= link "Salir", to: Routes.user_session_path(@conn, :delete), method: :delete, class: ["block py-2 px-4 text-sm text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"] %>
             </li>
           <% else %>
             <li>
-              <button class="bg-slate-600 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-full"><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></button>
+              <%= link "Registrarse", to: Routes.user_registration_path(@conn, :new), class: ["block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"] %>
             </li>
             <li>
-              <button class="bg-slate-600 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-full"><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></button>
+              <%= link "Iniciar sessión", to: Routes.user_session_path(@conn, :new), class: ["block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"] %>
             </li>
           <% end %>
         </ul>
       </div>
+      <!-- Dropdown menu end-->
       <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
       </button>
     </div>
     <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
-      <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-teal-500 dark:border-gray-700">
-        <li>
-          <a href="#" class="block py-2 pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-black md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
-        </li>
+      <ul class="flex flex-col p-4 mt-4 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0  ">
+        <%= if @current_user do %>
+          <%= if @current_user.admin do %>
+            <li>
+              <a href="/calendar" class="block py-2 pr-4 pl-3 text-2xl text-white rounded  md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Ver citas</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-2xl text-white rounded  md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">Servicios y precios</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-2xl text-white rounded  md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">Contacto</a>
+            </li>
+          <% else %>
+            <li>
+              <a href="/calendar" class="block py-2 pr-4 pl-3 text-2xl text-white rounded  md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Agendar cita</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-2xl text-white rounded  md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">Servicios y precios</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-2xl text-white rounded  md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">Contacto</a>
+            </li>
+          <% end %>
+        <% else %>
+          <li>
+            <a href="/calendar" class="block py-2 pr-4 pl-3 text-2xl text-white rounded  md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Agendar cita</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 pr-4 pl-3 text-2xl text-white rounded  md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">Servicios y precios</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 pr-4 pl-3 text-2xl text-white rounded  md:hover:bg-transparent md:hover:text-black md:p-0 dark:text-white md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">Contacto</a>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

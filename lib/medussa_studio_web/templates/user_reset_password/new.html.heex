@@ -1,15 +1,15 @@
-<h1>Forgot your password?</h1>
-
-<.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)}>
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-
-  <div>
-    <%= submit "Send instructions to reset password" %>
-  </div>
-</.form>
-
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+<div class="w-full max-w-max justify-items-center	pt-3">
+  <h1 class="text-center text-5xl font-semibold leading-normal mt-0 text-black ">Olvido su contraseña?</h1>
+  <.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)}, class="bg-white shadow-md rounded px-8 pb-8 mb-4 pt-5">
+    <div class="mb-4">
+      <%= label f, :correo, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
+      <%= email_input f, :email, required: true, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
+    </div>
+    <div class="flex items-center justify-center">
+      <%= submit "Enviar instrucciones para restablecer contraseña", class: ["bg-emerald-300 hover:bg-emerald-500 text-black font-bold py-2 px-4 rounded"] %>
+    </div>
+    <div class="text-center pt-3 font-bold text-sm text-black hover:text-emerald-500">
+      <%= link "Iniciar sesión", to: Routes.user_session_path(@conn, :new) %>
+    </div>
+  </.form>
+</div>

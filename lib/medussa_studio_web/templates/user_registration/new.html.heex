@@ -23,11 +23,11 @@
     </div>
     <div class="mb-4">
       <%= label f, :edad, class: ["block text-gray-700 text-sm font-bold mb-2"] %>
-      <%= select f, :age, 8..80, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
+      <%= select f, :age, 18..80, class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"] %>
       <%= error_tag f, :age %>
     </div>
     <div class="mb-4">
-      <%= label f, :celular, class: ["block text-gray-700 text-sm font-bold mb-2"]  %>
+      <%= label f, :telefono, class: ["block text-gray-700 text-sm font-bold mb-2"]  %>
       <%= text_input f, :phone, pattern: "[0-9]*", class: ["shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"]%>
       <%= error_tag f, :phone %>
     </div>
