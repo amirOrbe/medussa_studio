@@ -28,12 +28,36 @@ import Alpine from "alpinejs";
 window.Alpine = Alpine;
 Alpine.start();
 
+let Hooks = {};
+
+function sendNotification(title, message) {
+  if (Notification.permission === "granted") {
+    try {
+      new Notification(title, { body: message, requireInteraction: false });
+    } catch (e) {
+      console.debug("notifcation error: " + e);
+    }
+  }
+}
+
+Hooks.Notification = {
+  mounted() {
+    if (Notification.permission === "default") {
+      Notification.requestPermission();
+    }
+    this.handleEvent("notification", ({ title, message }) =>
+      sendNotification(title, message)
+    );
+  },
+};
+
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
 
 let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
+  hooks: Hooks,
   dom: {
     onBeforeElUpdated(from, to) {
       if (from._x_dataStack) {
