@@ -17,6 +17,7 @@ defmodule MedussaStudio.Appointments do
     |> Appointment.changeset(attrs)
     |> Repo.insert()
     |> broadcast(:appointment_created)
+    |> broadcast(:notification)
   end
 
   def get_appointmen_by_id!(id), do: Repo.get!(Appointment, id)
@@ -27,14 +28,23 @@ defmodule MedussaStudio.Appointments do
     |> Repo.all()
   end
 
-  def subscribe do
-    Phoenix.PubSub.subscribe(MedussaStudio.PubSub, "appointment")
+  def subscribe("appointment" = appointment) do
+    Phoenix.PubSub.subscribe(MedussaStudio.PubSub, appointment)
+  end
+
+  def subscribe("notification" = notification) do
+    Phoenix.PubSub.subscribe(MedussaStudio.PubSub, notification)
   end
 
   defp broadcast({:error, _reason} = error, _event), do: error
 
-  defp broadcast({:ok, appointment}, event) do
+  defp broadcast({:ok, appointment}, :appointment_created = event) do
     Phoenix.PubSub.broadcast(MedussaStudio.PubSub, "appointment", {event, appointment})
+    {:ok, appointment}
+  end
+
+  defp broadcast({:ok, appointment}, :notification = event) do
+    Phoenix.PubSub.broadcast(MedussaStudio.PubSub, "notification", {event, appointment})
     {:ok, appointment}
   end
 end

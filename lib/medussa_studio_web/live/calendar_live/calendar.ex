@@ -1,11 +1,12 @@
 defmodule MedussaStudioWeb.CalendarLive.Calendar do
   use MedussaStudioWeb, :live_view
   use Timex
-  alias MedussaStudio.Accounts
+  alias MedussaStudio.{Appointments, Accounts}
 
   @week_start_at :mon
 
   def mount(_params, session, socket) do
+    if connected?(socket), do: Appointments.subscribe("notification")
     current_date = Timex.now()
     %{admin: admin} = Accounts.get_user_by_session_token(session["user_token"])
 
@@ -62,5 +63,13 @@ defmodule MedussaStudioWeb.CalendarLive.Calendar do
     ]
 
     {:noreply, assign(socket, assigns)}
+  end
+
+  def handle_info({:notification, appointment}, socket) do
+    {:noreply,
+     push_event(socket, "notification", %{
+       title: "title test",
+       message: "message test: #{appointment.date}"
+     })}
   end
 end

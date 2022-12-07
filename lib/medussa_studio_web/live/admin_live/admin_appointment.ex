@@ -55,7 +55,7 @@ defmodule MedussaStudioWeb.AdminLive.AdminAppointment do
   end
 
   def mount(params, session, socket) do
-    if connected?(socket), do: Appointments.subscribe()
+    if connected?(socket), do: Appointments.subscribe("appointment")
 
     socket =
       assign(socket,
