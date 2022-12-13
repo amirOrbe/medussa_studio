@@ -68,8 +68,8 @@ defmodule MedussaStudioWeb.CalendarLive.Calendar do
   def handle_info({:notification, appointment}, socket) do
     {:noreply,
      push_event(socket, "notification", %{
-       title: "title test",
-       message: "message test: #{appointment.date}"
+       title: "Medussa Studio",
+       message: "Se creo una cita con la fecha: #{appointment.date} y hora #{appointment.time}"
      })}
   end
 end
