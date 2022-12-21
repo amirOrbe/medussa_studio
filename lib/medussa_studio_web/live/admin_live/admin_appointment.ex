@@ -1,4 +1,7 @@
 defmodule MedussaStudioWeb.AdminLive.AdminAppointment do
+  @moduledoc """
+  Live view to see appointments created
+  """
   use MedussaStudioWeb, :live_view
   alias MedussaStudio.Utils.HandleJson
   alias MedussaStudio.Appointments

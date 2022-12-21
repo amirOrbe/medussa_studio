@@ -1,4 +1,7 @@
 defmodule MedussaStudio.Accounts.UserToken do
+  @moduledoc """
+  Schema for users token
+  """
   use Ecto.Schema
   import Ecto.Query
   alias MedussaStudio.Accounts.UserToken

@@ -1,4 +1,7 @@
 defmodule MedussaStudioWeb.AppointmentLive.UserAppointment do
+  @moduledoc """
+  Live view for create appointment
+  """
   use MedussaStudioWeb, :live_view
   alias MedussaStudio.Appointments
   alias MedussaStudio.Accounts

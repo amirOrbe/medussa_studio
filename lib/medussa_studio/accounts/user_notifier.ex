@@ -1,4 +1,7 @@
 defmodule MedussaStudio.Accounts.UserNotifier do
+  @moduledoc """
+  Module for send email
+  """
   import Swoosh.Email
 
   alias MedussaStudio.Mailer

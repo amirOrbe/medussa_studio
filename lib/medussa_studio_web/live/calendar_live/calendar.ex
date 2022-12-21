@@ -1,4 +1,7 @@
 defmodule MedussaStudioWeb.CalendarLive.Calendar do
+  @moduledoc """
+  Module for the calendar logic
+  """
   use MedussaStudioWeb, :live_view
   use Timex
   alias MedussaStudio.{Appointments, Accounts}

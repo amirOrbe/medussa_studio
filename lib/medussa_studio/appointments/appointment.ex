@@ -1,4 +1,7 @@
 defmodule MedussaStudio.Appointments.Appointment do
+  @moduledoc """
+  Schema for Appointment
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

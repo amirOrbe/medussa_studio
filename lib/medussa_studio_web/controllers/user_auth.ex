@@ -1,4 +1,7 @@
 defmodule MedussaStudioWeb.UserAuth do
+  @moduledoc """
+  Controller for user auth
+  """
   import Plug.Conn
   import Phoenix.Controller
 
