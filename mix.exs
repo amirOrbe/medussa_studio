@@ -27,7 +27,7 @@ defmodule MedussaStudio.MixProject do
   def application do
     [
       mod: {MedussaStudio.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:ex_machina, :logger, :runtime_tools]
     ]
   end
 
@@ -64,7 +64,7 @@ defmodule MedussaStudio.MixProject do
       {:timex, "~> 3.7"},
       {:faker, "~> 0.17", only: :test},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:ex_machina, "~> 2.7.0"}
+      {:ex_machina, "~> 2.7.0", only: :test}
     ]
   end
 
