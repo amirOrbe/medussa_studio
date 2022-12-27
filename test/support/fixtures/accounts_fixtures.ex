@@ -10,7 +10,11 @@ defmodule MedussaStudio.AccountsFixtures do
   def valid_user_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
       email: unique_user_email(),
-      password: valid_user_password()
+      password: valid_user_password(),
+      name: Faker.Person.name(),
+      age: Faker.random_between(20, 40),
+      phone: Faker.random_between(55_000_000, 56_000_000),
+      admin: false
     })
   end
 
