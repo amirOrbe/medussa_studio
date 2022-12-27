@@ -62,8 +62,9 @@ defmodule MedussaStudio.MixProject do
       {:dart_sass, "~> 0.5.1", runtime: Mix.env() == :dev},
       {:excoveralls, "~> 0.15.0"},
       {:timex, "~> 3.7"},
-      {:faker, "~> 0.17", only: [:test, :dev]},
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
+      {:faker, "~> 0.17", only: :test},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:ex_machina, "~> 2.7.0"}
     ]
   end
 
